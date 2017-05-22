@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  drug_name: MyString
+  quantity: 1
+  price: 9.99
+  drug_form: MyString
+  prescription_id: 
+
+two:
+  drug_name: MyString
+  quantity: 1
+  price: 9.99
+  drug_form: MyString
+  prescription_id: 
