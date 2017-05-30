@@ -1,3 +1,4 @@
+<div class="text_center">
 <%= form_for(@prescription) do |f| %>
   <% if @prescription.errors.any? %>
     <div id="error_explanation">
@@ -11,11 +12,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :patient_visit_id %><br>
-    <%= f.text_field :patient_visit_id %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center hide ">
+    <%= f.label :patient_visit_id, :class => "mdl-textfield__label"  %><br>
+    <%= f.text_field :patient_visit_id, value: @patient_visit, :class => "mdl-textfield__input" %>
   </div>
+
+  <%= f.fields_for :prescription_item do |builder| %>
+
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= builder.label :drug_name, "Drug Name", :class => "mdl-textfield__label"  %>
+    <%= builder.text_field :drug_name, :class => "mdl-textfield__input" %>
+  </div>
+
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+  <%= builder.label :drug_form, "Drug Form", :class => "mdl-textfield__label"  %>
+  <%= builder.text_field :drug_form, :class => "mdl-textfield__input" %>
+  </div>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+  <%= builder.label :quantity, "Quantity", :class => "mdl-textfield__label"  %>
+  <%= builder.text_field :quantity, :class => "mdl-textfield__input" %>
+</div>
+<div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+  <%= builder.label :price, "Price", :class => "mdl-textfield__label"  %>
+  <%= builder.text_field :price, :class => "mdl-textfield__input" %>
+</div>
+
+
+<% end %>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
   </div>
 <% end %>
+</div>

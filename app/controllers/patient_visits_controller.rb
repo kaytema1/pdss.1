@@ -10,11 +10,13 @@ class PatientVisitsController < ApplicationController
   # GET /patient_visits/1
   # GET /patient_visits/1.json
   def show
+
   end
 
   # GET /patient_visits/new
   def new
     @patient_visit = PatientVisit.new
+    @patient = Patient.find(params[:patient_id])
   end
 
   # GET /patient_visits/1/edit
@@ -26,14 +28,19 @@ class PatientVisitsController < ApplicationController
   def create
     @patient_visit = PatientVisit.new(patient_visit_params)
 
-    respond_to do |format|
+
       if @patient_visit.save
-        format.html { redirect_to @patient_visit, notice: 'Patient visit was successfully created.' }
-        format.json { render :show, status: :created, location: @patient_visit }
+        if params[:create_and_question]
+          redirect_to  controller: 'questionnaires', action:'new', patient_visit_id: @patient_visit.to_param
+        elsif params[:create_and_diagnose]
+          redirect_to  controller: 'diagnoses', action:'new', patient_visit_id: @patient_visit.to_param
+        else
+          redirect_to  controller: 'prescriptions', action:'new', patient_visit_id: @patient_visit.to_param
+        end
       else
         format.html { render :new }
-        format.json { render json: @patient_visit.errors, status: :unprocessable_entity }
-      end
+    #    format.json { render json: @patient_visit.errors, status: :unprocessable_entity }
+    #  end
     end
   end
 

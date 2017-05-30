@@ -1,37 +1,46 @@
-<h1>Listing patients</h1>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div class="mdl-tabs__tab-bar">
+    <%= link_to "New Patient", new_patient_path,  :class => "mdl-tabs__tab" %>
+    <a href="#patients-panel" class="mdl-tabs__tab is-active">Existing Patients</a>
+  </div>
+  <div class="mdl-tabs__panel is-active" id="patients-panel">
 
-<table>
-  <thead>
-    <tr>
-      <th>Folder number</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Date of birth</th>
-      <th>Gender</th>
-      <th>Address</th>
-      <th>Doctors name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">Folder number</th>
+            <th class="mdl-data-table__cell--non-numeric">First name</th>
+            <th class="mdl-data-table__cell--non-numeric">Last name</th>
+            <th class="mdl-data-table__cell--non-numeric">Date of birth</th>
+            <th class="mdl-data-table__cell--non-numeric">Gender</th>
+            <th class="mdl-data-table__cell--non-numeric">Address</th>
+            <th class="mdl-data-table__cell--non-numeric">Doctors name</th>
+            <th></th>
 
-  <tbody>
-    <% @patients.each do |patient| %>
-      <tr>
-        <td><%= patient.folder_number %></td>
-        <td><%= patient.first_name %></td>
-        <td><%= patient.last_name %></td>
-        <td><%= patient.date_of_birth %></td>
-        <td><%= patient.gender %></td>
-        <td><%= patient.address %></td>
-        <td><%= patient.doctors_name %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @patients.each do |patient| %>
+            <tr>
+              <td class="text_left"><%= link_to patient.folder_number, patient %></td>
+              <td><%= patient.first_name %></td>
+              <td><%= patient.last_name %></td>
+              <td><%= patient.date_of_birth %></td>
+              <td><%= patient.gender %></td>
+              <td><%= patient.address %></td>
+              <td><%= patient.doctors_name %></td>
+              <td><%= link_to "Start Visit", { controller: "patient_visits", action: "new", patient_id: patient.to_param } %>
+
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
 <br>
 
-<%= link_to 'New Patient', new_patient_path %>
+
+  </div>
+</div>

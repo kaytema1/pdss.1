@@ -1,3 +1,4 @@
+<div class="text_center">
 <%= form_for(@patient) do |f| %>
   <% if @patient.errors.any? %>
     <div id="error_explanation">
@@ -11,35 +12,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :folder_number %><br>
-    <%= f.text_field :folder_number %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :folder_number, :class => "mdl-textfield__label" %><br>
+    <%= f.text_field :folder_number, :class => "mdl-textfield__input" %>
   </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :first_name, :class => "mdl-textfield__label" %><br>
+    <%= f.text_field :first_name, :class => "mdl-textfield__input" %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :last_name, :class => "mdl-textfield__label" %><br>
+    <%= f.text_field :last_name, :class => "mdl-textfield__input" %>
   </div>
-  <div class="field">
-    <%= f.label :date_of_birth %><br>
-    <%= f.date_select :date_of_birth %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :date_of_birth, :class => "mdl-textfield__label" %><br>
+    <%= f.date_select :date_of_birth, :class => "mdl-textfield__input" %>
+
   </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :gender, :class => "mdl-textfield__label" %><br>
+    <%= f.select :gender, options_for_select([["MALE", "MALE"], ["FEMALE", "FEMALE"]]), :class => "mdl-textfield__input" %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :address, :class => "mdl-textfield__label" %><br>
+    <%= f.text_area :address, :class => "mdl-textfield__input" %>
   </div>
-  <div class="field">
-    <%= f.label :doctors_name %><br>
-    <%= f.text_field :doctors_name %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center">
+    <%= f.label :doctors_name, :class => "mdl-textfield__label" %><br>
+    <%= f.text_field :doctors_name, :class => "mdl-textfield__input" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"  %>
   </div>
 <% end %>
+</div>

@@ -3,7 +3,16 @@
 <p>
   <strong>Patient visit:</strong>
   <%= @prescription.patient_visit %>
+
+<% for prescription_item in @prescription.prescription_items %>
+<br />
+  Drug Name <%= prescription_item.drug_name %> <br/>
+  Drug Form <%= prescription_item.drug_form %><br/>
+  Quantity <%= prescription_item.quantity %><br/>
+  Price <%= prescription_item.price %><br/>
+
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_prescription_path(@prescription) %> |
+<%= link_to 'Edit', :controller => 'prescriptions', :action => 'edit', :patient_visit_id => @prescription.patient_visit %> |
 <%= link_to 'Back', prescriptions_path %>

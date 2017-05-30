@@ -15,6 +15,8 @@ class DiagnosesController < ApplicationController
   # GET /diagnoses/new
   def new
     @diagnosis = Diagnosis.new
+    @patient_visit = PatientVisit.find(params[:patient_visit_id])
+    @patient = @patient_visit.patient
   end
 
   # GET /diagnoses/1/edit
@@ -26,15 +28,14 @@ class DiagnosesController < ApplicationController
   def create
     @diagnosis = Diagnosis.new(diagnosis_params)
 
-    respond_to do |format|
+    #respond_to do |format|
       if @diagnosis.save
-        format.html { redirect_to @diagnosis, notice: 'Diagnosis was successfully created.' }
-        format.json { render :show, status: :created, location: @diagnosis }
+        redirect_to  controller: 'questionnaires', action:'new', patient_visit_id: @patient_visit.to_param
       else
         format.html { render :new }
-        format.json { render json: @diagnosis.errors, status: :unprocessable_entity }
+        #format.json { render json: @diagnosis.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /diagnoses/1

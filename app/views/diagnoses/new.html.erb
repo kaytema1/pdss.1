@@ -1,5 +1,36 @@
-<h1>New diagnosis</h1>
+<div class="language-markup">
+    <div style="width: 30%; float: left">
+        <i style="font-size: 800%; color: #448AFF" class="material-icons">account_box</i>
+    </div>
+    <div style="width: 50%; float: left; margin-top: 10px;">
+      <table style="font-size: 1.5em; text-transform : uppercase !important;">
+        <tr>
+          <td>
+            <%= @patient.folder_number %>
+          <td>
+        <tr>
+        <tr>
+          <td>
+            <%= @patient.first_name %>
+            <%= @patient.last_name %>
+          <td>
+        </tr>
+        <tr>
+          <td>
+            <%= age(@patient.date_of_birth) %>
+            &#9899;
+            0533 434 333
+            &#9899;
+            <%= @patient.gender %>
+          <td>
+        </tr>
+      </table>
+    </div>
+    <div style="width: 20%; float: left">
+        <i style="font-size: 700%; color: #673AB7; margin-top: 10%" class="material-icons">play_circle_filled</i>
+    </div>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', diagnoses_path %>
+<%= link_to 'Back', patients_path  %>

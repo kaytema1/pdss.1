@@ -1,3 +1,6 @@
+
+
+
 <%= form_for(@diagnosis) do |f| %>
   <% if @diagnosis.errors.any? %>
     <div id="error_explanation">
@@ -11,15 +14,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center hide">
     <%= f.label :diagnosis %><br>
     <%= f.text_field :diagnosis %>
   </div>
-  <div class="field">
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center hide">
     <%= f.label :patient_visit_id %><br>
-    <%= f.text_field :patient_visit_id %>
+    <%= f.text_field :patient_visit_id, value: @patient_visit.id %>
   </div>
-  <div class="actions">
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label text_center hide">
     <%= f.submit %>
+  </div>
+
+
+  <div style="margin-top: 50px; padding: 10px 20%;" class="text_center">
+    PLEASE SELECT <br />
+    <br />
+    <%= f.submit "DIABETES ONLY", name: 'create_and_diabetes_only' , class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    <br />
+    <br />
+    <%= f.submit "DIABETES & HYPERTENSION", name: 'create_and_diabetes_hypertension' ,class:  "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    <br />
+    <br />
+    <%= f.submit  "HYPERTENSION", name: 'create_and_hypertension_only', class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    <br />
+    <br />
+    <%= f.submit  "MULITPLE DISEASE CONDITION ", name: 'create_and_multi', class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+
   </div>
 <% end %>

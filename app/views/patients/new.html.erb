@@ -1,5 +1,12 @@
-<h1>New patient</h1>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div class="mdl-tabs__tab-bar">
+        <a href="#newpatient-panel" class="mdl-tabs__tab is-active">New Patient</a>
+        <%= link_to "Existing Patients", patients_path,  :class => "mdl-tabs__tab" %>
+  </div>
+  <div class="mdl-tabs__panel is-active" id="newpatient-panel">
+    <%= render 'form' %>
+    <%= link_to 'Back', patients_path %>
+  </div>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', patients_path %>
+</div>

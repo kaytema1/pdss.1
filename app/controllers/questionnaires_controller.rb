@@ -14,7 +14,12 @@ class QuestionnairesController < ApplicationController
 
   # GET /questionnaires/new
   def new
-    @questionnaire = Questionnaire.new
+    5.times {
+      @questionnaire = Questionnaire.new
+    }
+    @patient_visit = PatientVisit.find(params[:patient_visit_id])
+    @patient = @patient_visit.patient
+
   end
 
   # GET /questionnaires/1/edit

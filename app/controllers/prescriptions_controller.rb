@@ -5,6 +5,7 @@ class PrescriptionsController < ApplicationController
   # GET /prescriptions.json
   def index
     @prescriptions = Prescription.all
+    
   end
 
   # GET /prescriptions/1
@@ -15,6 +16,9 @@ class PrescriptionsController < ApplicationController
   # GET /prescriptions/new
   def new
     @prescription = Prescription.new
+    @prescription.prescription_items.build
+    @patient_visit = PatientVisit.find(params[:patient_visit_id])
+    @patient = @patient_visit.patient
   end
 
   # GET /prescriptions/1/edit
@@ -25,16 +29,17 @@ class PrescriptionsController < ApplicationController
   # POST /prescriptions.json
   def create
     @prescription = Prescription.new(prescription_params)
+    @prescription.prescription_items.build
 
-    respond_to do |format|
+    #respond_to do |format|
       if @prescription.save
-        format.html { redirect_to @prescription, notice: 'Prescription was successfully created.' }
-        format.json { render :show, status: :created, location: @prescription }
+        redirect_to  controller: 'questionnaires', action:'new', patient_visit_id: @patient_visit.to_param
+        #format.json { render :show, status: :created, location: @prescription }
       else
         format.html { render :new }
-        format.json { render json: @prescription.errors, status: :unprocessable_entity }
+        #format.json { render json: @prescription.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /prescriptions/1
@@ -69,6 +74,6 @@ class PrescriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prescription_params
-      params.require(:prescription).permit(:patient_visit_id)
+      params.require(:prescription).permit(:patient_visit_id, prescription_items: [:drug_name, :quantity, :price, :drug_form ] )
     end
 end
